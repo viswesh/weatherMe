@@ -1,0 +1,37 @@
+<div class="row" ng-if="selectedWeather">
+  <div class="jumbotron hidden-xs customjumbotron" back-img="{{imgUrl}}">
+    <div class="layer cloudy" ng-class="{'sunny': selectedWeather.conditions.indexOf('Clear')!=-1, 'cloudy': selectedWeather.conditions.indexOf('Clear')==-1}">
+    </div>
+    <div class="weatherheader">
+      <img ng-src="{{selectedWeather.icon_url}}" alt="">
+      <h2 ng-bind="address" class="customh2 ng-binding"></h2>
+      <div class="temperature">
+         <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;&nbsp;<span ng-bind="selectedWeather.high.fahrenheit+' &#8457;'" class="ng-binding">50℉</span> <br><br>
+         <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>&nbsp;&nbsp;<span ng-bind="selectedWeather.low.fahrenheit+'   &#8457;'" class="ng-binding">40℉</span>
+      </div>      
+    </div>    
+  </div>
+</div>
+
+
+<!--Weather Details tiles-->
+<div class="container">
+  <div class="row">
+        <div class="col-md-2 col-sm-2 weathercol" ng-repeat="weather in weatherData">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="thumbnail" ng-click="selectWeather(weather)" ng-class="{'active': weather.selected, 'inactive': !weather.selected}">
+                  <img ng-src="{{weather.icon_url}}" alt="">
+                  <p class="muted text-center ng-binding" ng-bind="weather.conditions"></p>
+                  <div class="caption">
+                    <h6 class="text-center ng-binding" ng-bind="weather.date.epoch | dateformat"></h6>
+                    <p class="muted text-center ng-binding" ng-bind="weather.date.weekday"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
